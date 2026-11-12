@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send Your Files | Dash Digital</title>
+<meta name="description" content="Upload your logo, photos and files for your Dash Digital website project.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* SETTINGS: paste your Google Apps Script web app URL below (see README) */
+  window.DD_CONFIG = {
+    UPLOAD_URL: "https://script.google.com/macros/s/AKfycby5KPukhPQa98kVDbxiWY6JYNI5puuYiNB0Ccd_sV2YvalJu59SRS5vuLXR4ly7r9qo7w/exec",
+    CONTACT_EMAIL: "contact@dashdigital.ca"
+  };
+</script>
+<style>
+  :root{
+    --blue:#1D50A9; --blue-dark:#173f86; --navy:#0F1729; --slate:#64748B; --slate-dark:#475569;
+    --pale:#DBEAFE; --line:#E2E8F0; --bg:#F8FAFC; --white:#fff; --danger:#c62828;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:var(--navy);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Outfit,Inter,sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:1.1}
+  a{color:var(--blue)}
+
+  .topbar{width:100%;background:#1d50a9;color:#fff;padding:12px 0}
+  .topbar .in{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:center}
+  .topbar a{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:.025em;transition:color .15s}
+  .topbar a:hover{color:#dbeafe}
+  .topbar svg{width:16px;height:16px}
+  header{position:sticky;top:0;z-index:50;width:100%;background:#fff;border-bottom:1px solid #f1f5f9;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+  .nav{max-width:1280px;margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;height:81px;position:relative}
+  .logo img{height:40px;width:auto;display:block}
+  .nav-btns{display:flex;align-items:center;gap:16px}
+  .nav-btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:8px 24px;border-radius:9999px;background:#1d50a9;color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s}
+  .nav-btn:hover{background:#173f86}
+  .pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;font-weight:700;font-size:15px;padding:12px 26px;border:2px solid transparent;cursor:pointer;text-decoration:none;font-family:Inter,sans-serif;transition:background .15s,transform .1s,box-shadow .15s}
+  .pill:active{transform:scale(.98)}
+  .pill-blue{background:var(--blue);color:#fff}
+  .pill-blue:hover{background:var(--blue-dark)}
+  .pill-outline{background:#fff;color:var(--navy);border-color:var(--navy)}
+  .pill-outline:hover{background:var(--bg)}
+  .pill-sm{padding:9px 20px;font-size:14px;box-shadow:none}
+
+  .hero{padding:56px 20px 32px;max-width:760px;margin:0 auto;text-align:center}
+  .eyebrow{display:inline-block;background:var(--pale);color:var(--blue);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+  .hero h1{font-size:clamp(34px,5vw,48px)}
+  .hero h1 em{font-style:normal;color:var(--blue)}
+  .hero p{color:var(--slate);font-size:17px;margin:12px auto 0;max-width:600px}
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px 80px}
+  .progress{display:flex;gap:6px;margin:0 0 10px}
+  .progress div{flex:1;height:6px;border-radius:99px;background:var(--line);transition:background .25s}
+  .progress div.on{background:var(--blue)}
+  .step-label{display:flex;justify-content:space-between;color:var(--slate);font-size:14px;font-weight:600;margin-bottom:18px}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:36px;box-shadow:none}
+  .card h2{font-size:26px;margin-bottom:24px}
+  .card .sub{color:var(--slate);margin-bottom:28px}
+  .step{display:none} .step.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .field{margin-bottom:24px}
+  .field>label,.field>.q{display:block;font-weight:600;font-size:16px;margin-bottom:4px}
+  .req{color:var(--blue)}
+  .opt{color:var(--slate);font-weight:500;font-size:13px}
+  .help{color:var(--slate);font-size:14px;margin-bottom:8px}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea,select{width:100%;font:inherit;font-size:16px;color:var(--navy);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;transition:border .15s,box-shadow .15s,background .15s}
+  textarea{min-height:110px;resize:vertical}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(29,80,169,.12)}
+  .choices{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+  .choice{position:relative}
+  .choice input{position:absolute;opacity:0;pointer-events:none}
+  .choice span{display:inline-block;padding:10px 18px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font-weight:500;font-size:15px;cursor:pointer;transition:all .15s;user-select:none}
+  .choice span:hover{border-color:var(--blue)}
+  .choice input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+  .choice input:focus-visible+span{box-shadow:0 0 0 4px rgba(29,80,169,.2)}
+  .other-input{margin-top:10px;display:none}
+  .err{display:none;color:var(--danger);font-size:14px;margin-top:6px;font-weight:500}
+  .field.invalid .err{display:block}
+  .field.invalid input,.field.invalid textarea,.field.invalid select{border-color:var(--danger)}
+  .hidden{display:none}
+
+  .note{background:var(--pale);border-radius:12px;padding:16px 18px;color:var(--navy);font-size:15px;margin-bottom:24px}
+  .note strong{color:var(--blue)}
+  .actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+  .actions .spacer{flex:1}
+  .form-error{display:none;background:#fdecec;color:var(--danger);border-radius:12px;padding:12px 16px;margin-top:16px;font-size:15px}
+
+  .done{padding:8px 0}
+  .done .check{width:72px;height:72px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:36px}
+  .done h2{font-size:34px}
+  .done p{color:var(--slate);margin-top:12px;font-size:17px}
+
+  .band{background:var(--blue);color:#fff;text-align:center;padding:28px 20px}
+  .band p{font-size:15px;opacity:.9}
+  footer{background:var(--navy);color:#cbd5e1;text-align:center;padding:28px 20px;font-size:14px}
+  footer a{color:#fff;text-decoration:none;font-weight:600}
+
+  @media (max-width:640px){
+    .card{padding:24px 20px}
+    .nav{justify-content:center}
+    .nav-btns{display:none}
+    .logo img{height:32px}
+    .actions{flex-direction:column-reverse;align-items:stretch}
+    .actions .pill{width:100%}
+  }
+</style>
+<style>
+  .drop{display:flex;align-items:center;justify-content:center;gap:12px;padding:26px 16px;border:2px dashed #CBD5E1;border-radius:14px;background:var(--bg);color:var(--slate);cursor:pointer;font-size:15px;transition:border-color .15s,background .15s}
+  .drop strong{color:var(--blue)}
+  .drop:hover,.drop.over{border-color:var(--blue);background:#fff}
+  .drop svg{color:var(--blue)}
+  .file-input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  .file-list{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .file-list li{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:#fff}
+  .file-list li span:first-child{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .file-list .size{color:var(--slate);font-size:13px}
+  .file-list .rm{border:none;background:none;font-size:20px;line-height:1;color:var(--slate);cursor:pointer;padding:0 4px;min-width:28px;min-height:28px}
+  .file-list .rm:hover{color:var(--danger)}
+  .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:14px}
+  .bar div{height:100%;width:0;background:var(--blue);transition:width .3s}
+  .drop-field{position:relative}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="in">
+  <a id="topEmail" href="mailto:contact@dashdigital.ca"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg><span id="topEmailText">contact@dashdigital.ca</span></a>
+</div></div>
+<header>
+  <div class="nav">
+    <a class="logo" href="https://dashdigital.ca" aria-label="Dash Digital home"><img src="logo.png" alt="Dash Digital" width="111" height="40"></a>
+    <div class="nav-btns">
+      <a class="nav-btn" href="https://portal.dashdigital.ca/">Client Portal</a>
+      <a class="nav-btn" href="https://www.dashdigital.ca/#contact">Let's Talk</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Send your files</h1>
+  <p>Upload your logo, photos and anything else you'd like on your website. They go straight to me, so no need to email them.</p>
+</section>
+
+<main class="wrap">
+  <form id="upForm" class="card" novalidate>
+    <div id="formArea">
+      <div class="field"><label for="name">Your name <span class="req">*</span></label>
+        <input type="text" id="name" required autocomplete="name"><div class="err">Please enter your name.</div></div>
+      <div class="field"><label for="business">Business name <span class="req">*</span></label>
+        <input type="text" id="business" required autocomplete="organization"><div class="err">Please enter your business name.</div></div>
+
+      <div class="field drop-field" data-cat="Logo">
+        <span class="q">Logo</span>
+        <p class="help">The best quality you have. SVG, PNG, PDF or AI files are great.</p>
+        <label class="drop" for="logoInput">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+          <span><strong>Choose files</strong> or drag them here</span>
+        </label>
+        <input type="file" id="logoInput" class="file-input" multiple accept="image/*,.svg,.pdf,.ai,.eps,.psd">
+        <ul class="file-list"></ul>
+      </div>
+
+      <div class="field drop-field" data-cat="Photos">
+        <span class="q">Photos</span>
+        <p class="help">Your work, team or location. Original photos look best (not screenshots).</p>
+        <label class="drop" for="photoInput">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+          <span><strong>Choose files</strong> or drag them here</span>
+        </label>
+        <input type="file" id="photoInput" class="file-input" multiple accept="image/*,.heic,.heif">
+        <ul class="file-list"></ul>
+      </div>
+
+      <div class="field drop-field" data-cat="Other">
+        <span class="q">Anything else</span>
+        <p class="help">Menus, price lists, documents, videos, whatever might help.</p>
+        <label class="drop" for="otherInput">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
+          <span><strong>Choose files</strong> or drag them here</span>
+        </label>
+        <input type="file" id="otherInput" class="file-input" multiple>
+        <ul class="file-list"></ul>
+      </div>
+
+      <div class="form-error" id="formError"></div>
+      <div class="actions">
+        <span class="spacer"></span>
+        <button type="submit" class="pill pill-blue" id="sendBtn">Upload files</button>
+      </div>
+    </div>
+
+    <div id="progressArea" class="hidden">
+      <h2 style="font-size:26px;margin-bottom:8px">Uploading...</h2>
+      <p class="help" id="progressText">Please keep this page open.</p>
+      <div class="bar"><div id="barFill"></div></div>
+    </div>
+
+    <div id="doneArea" class="hidden">
+      <h2 style="font-size:26px;margin-bottom:8px">Got them, thank you!</h2>
+      <p class="help" style="font-size:16px">Your files came through. I'll let you know if I need anything else.</p>
+      <p class="help" style="font-size:16px">Forgot something? <a href="#" id="againLink">Upload more files</a>.</p>
+      <p class="help" id="previewNote" style="display:none">(Preview mode: this page isn't connected yet, so nothing was uploaded.)</p>
+    </div>
+  </form>
+</main>
+
+<script>
+(function(){
+  var cfg = window.DD_CONFIG || {};
+  var MAX_MB = 35;
+  var picked = { Logo: [], Photos: [], Other: [] };
+  function newId(){ return Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+  var sid = newId();
+  var form = document.getElementById('upForm');
+  var err = document.getElementById('formError');
+  var notConnected = !cfg.UPLOAD_URL || cfg.UPLOAD_URL.indexOf('PASTE') === 0;
+
+  document.getElementById('topEmailText').textContent = cfg.CONTACT_EMAIL;
+  document.getElementById('topEmail').href = 'mailto:' + cfg.CONTACT_EMAIL;
+
+  function sizeLabel(b){ return b > 1048576 ? (b/1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b/1024)) + ' KB'; }
+
+  function render(field){
+    var cat = field.dataset.cat, ul = field.querySelector('.file-list');
+    ul.innerHTML = '';
+    picked[cat].forEach(function(f, i){
+      var li = document.createElement('li');
+      var name = document.createElement('span'); name.textContent = f.name;
+      var size = document.createElement('span'); size.className = 'size'; size.textContent = sizeLabel(f.size);
+      var rm = document.createElement('button'); rm.type = 'button'; rm.className = 'rm'; rm.setAttribute('aria-label', 'Remove ' + f.name); rm.textContent = '×';
+      rm.addEventListener('click', function(){ picked[cat].splice(i, 1); render(field); });
+      li.appendChild(name); li.appendChild(size); li.appendChild(rm); ul.appendChild(li);
+    });
+  }
+
+  function add(field, files){
+    var cat = field.dataset.cat, tooBig = [];
+    Array.prototype.forEach.call(files, function(f){
+      if (f.size > MAX_MB * 1048576) { tooBig.push(f.name); return; }
+      picked[cat].push(f);
+    });
+    render(field);
+    if (tooBig.length) showErr(tooBig.join(', ') + (tooBig.length > 1 ? ' are' : ' is') + ' over ' + MAX_MB + ' MB. Email me at ' + cfg.CONTACT_EMAIL + ' and I\'ll send you another way to share it.');
+  }
+
+  function showErr(t){ err.textContent = t; err.style.display = 'block'; }
+
+  document.querySelectorAll('.drop-field').forEach(function(field){
+    var input = field.querySelector('.file-input'), drop = field.querySelector('.drop');
+    input.addEventListener('change', function(){ add(field, input.files); input.value = ''; });
+    ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev, function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop', function(e){ if (e.dataTransfer && e.dataTransfer.files) add(field, e.dataTransfer.files); });
+  });
+
+  form.addEventListener('input', function(e){ var f = e.target.closest('.field'); if (f) f.classList.remove('invalid'); });
+
+  function readB64(file){
+    return new Promise(function(res, rej){
+      var r = new FileReader();
+      r.onload = function(){ res(String(r.result).split(',')[1] || ''); };
+      r.onerror = rej;
+      r.readAsDataURL(file);
+    });
+  }
+
+  function post(payload){
+    return fetch(cfg.UPLOAD_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if (!j.ok) throw new Error(j.error || 'Upload failed'); return j; });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.style.display = 'none';
+    var name = document.getElementById('name'), biz = document.getElementById('business'), ok = true;
+    [name, biz].forEach(function(i){ var bad = !i.value.trim(); i.closest('.field').classList.toggle('invalid', bad); if (bad) ok = false; });
+    if (!ok) return;
+    var all = [];
+    Object.keys(picked).forEach(function(c){ picked[c].forEach(function(f){ all.push({ cat: c, file: f }); }); });
+    if (!all.length) { showErr('Add at least one file to upload.'); return; }
+
+    document.getElementById('formArea').classList.add('hidden');
+    document.getElementById('progressArea').classList.remove('hidden');
+    var text = document.getElementById('progressText'), fill = document.getElementById('barFill');
+
+    if (notConnected) {
+      fill.style.width = '100%';
+      setTimeout(finish.bind(null, true), 600);
+      return;
+    }
+
+    var done = 0, names = [];
+    var chain = Promise.resolve();
+    all.forEach(function(item){
+      chain = chain.then(function(){
+        text.textContent = 'Uploading ' + (done + 1) + ' of ' + all.length + ': ' + item.file.name;
+        return readB64(item.file).then(function(b64){
+          return post({ action: 'upload', submissionId: sid, name: name.value.trim(), business: biz.value.trim(), category: item.cat,
+                        filename: item.file.name, mimeType: item.file.type || 'application/octet-stream', data: b64 });
+        }).then(function(){
+          done++; names.push((item.cat === 'Other' ? 'Anything else' : item.cat) + ': ' + item.file.name);
+          fill.style.width = Math.round(done / all.length * 100) + '%';
+        });
+      });
+    });
+    chain.then(function(){
+      return post({ action: 'done', submissionId: sid, name: name.value.trim(), business: biz.value.trim(), files: names }).catch(function(){});
+    }).then(function(){ finish(false); })
+    .catch(function(){
+      document.getElementById('progressArea').classList.add('hidden');
+      document.getElementById('formArea').classList.remove('hidden');
+      showErr('Something went wrong after ' + done + ' of ' + all.length + ' files. Check your connection and try again, or email ' + cfg.CONTACT_EMAIL + '.');
+      // drop the files that already made it
+      var sent = all.slice(0, done);
+      sent.forEach(function(s){ var a = picked[s.cat]; var i = a.indexOf(s.file); if (i > -1) a.splice(i, 1); });
+      document.querySelectorAll('.drop-field').forEach(render);
+    });
+  });
+
+  function finish(preview){
+    document.getElementById('progressArea').classList.add('hidden');
+    document.getElementById('doneArea').classList.remove('hidden');
+    document.getElementById('previewNote').style.display = preview ? 'block' : 'none';
+  }
+
+  document.getElementById('againLink').addEventListener('click', function(e){
+    e.preventDefault();
+    Object.keys(picked).forEach(function(c){ picked[c] = []; });
+    sid = newId();
+    document.querySelectorAll('.drop-field').forEach(render);
+    document.getElementById('barFill').style.width = '0';
+    document.getElementById('doneArea').classList.add('hidden');
+    document.getElementById('formArea').classList.remove('hidden');
+  });
+})();
+</script>
+</body>
+</html>
